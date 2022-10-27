@@ -1,0 +1,51 @@
+<div class="container col-md-8 mt-5">
+   <form action="/toy/edit/{{toy._id}}" method="post" class="card p-3 bg-light text-center">
+      <h2 class="text text-primary">Edit Toy Infor</h2>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Toy Name</label>
+         <input class="form-control" type="text" name="name" value="{{toy.name}}" required minlength="3"
+            maxlength="20">
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Toy Brand</label>
+         <input class="form-control" type="text" name="brand" value="{{toy.brand}}" required >
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Toy Type</label>
+         <br>
+         
+         {{#equal toy.type "Boy"}}
+         Boy <input type="radio" name="type" value="Boy" checked>
+         Girl <input type="radio" name="type" value="Girl">
+         {{/equal}}
+         {{#equal toy.type "Girl"}}
+         Boy <input type="radio" name="type" value="Boy">
+         Girl <input type="radio" name="type" value="Girl"checked>
+         {{/equal}}
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Toy Year</label>
+         <input class="form-control" type="year" name="year" value="{{toy.year}}" required >
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Toy Image</label><br>
+         <img src="{{toy.image}}" width="100" height="100">
+         <input class="form-control mt-3" type="text" name="image" value="{{toy.image}}" required>
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Toy price</label>
+         <input class="form-control" type="price" name="price" value="{{toy.price}}" required >
+      </div>
+
+
+      <div class="form-group mt-3">
+         <input class="btn btn-primary mt-3" type="submit" value="Edit">
+      </div>
+   </form>
+</div>

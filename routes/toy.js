@@ -1,12 +1,12 @@
 const express = require('express')
-const StudentModel = require('../models/StudentModel')
+const ToyModel = require('../models/ToyModel')
 const router = express.Router()
 
 
 router.get('/drop', (req, res) => {
-    StudentModel.deleteMany({}, () => {
+    ToyModel.deleteMany({}, () => {
         console.log("Delete all data succeed !")
-        res.redirect('/student')
+        res.redirect('/toy')
     })
 })
 
@@ -14,50 +14,48 @@ router.get('/drop', (req, res) => {
 
 //URL: localhost:3000/student
 router.get('/', (req, res) => {
-    StudentModel.find((err, data) => {
+    ToyModel.find((err, data) => {
         if (!err) {
             //res.send(data)
             //render ra trang index ở thư mục views/student
-            res.render('student/index', { student: data })
+            res.render('toy/index', { toy: data })
         }
     })
 })
 
 
 
-router.get('/api', (req, res) => {
-    StudentModel.find((err, data) => {
+router.get('/list', (req, res) => {
+    ToyModel.find((err, data) => {
         if (!err) {
-            //res.send(data)
-            //render ra trang index ở thư mục views/student
-            res.json(data)
+            res.render('toy/list', { toy: data, })
         }
     })
 })
 
 
 router.get('/delete/:id', (req, res) => {
-    StudentModel.findByIdAndDelete(req.params.id, (err) => {
+    ToyModel.findByIdAndDelete(req.params.id, (err) => {
         if (err) {
             console.log(err)
         } else {
             console.log("Delete student succeed !");
             //var message = "Delete student succeed !";
             //redirect về trang /student (URL không phải view)
-            res.redirect("/student");
+            res.redirect("/toy");
         }
     })
 })
 
 //render ra form ADD
 router.get('/add', (req, res) => {
-    res.render("student/new");
+    res.render("toy/new");
 })
 
 //nhận & xử lý dữ liệu từ form ADD
 router.post('/add', (req, res) => {
     //Cách 1: dùng "save"
-    // var student = new StudentModel(req.body)
+    // var student = new ToyModel(req.body)
     // student.save((err) => {
     //     if (err) {
     //         console.log(err)
@@ -67,22 +65,22 @@ router.post('/add', (req, res) => {
     //     }
     // })
     //Cách 2: dùng "create"
-    StudentModel.create(req.body, (err) => {
+    ToyModel.create(req.body, (err) => {
         if (!err) {
             console.log('Add student succeed !')
-            res.redirect("/student")
+            res.redirect("/toy")
         }
     })
 })
 
 //render ra form EDIT
 router.get('/edit/:id', (req, res) => {
-    StudentModel.findById(req.params.id, (err, data) => {
+    ToyModel.findById(req.params.id, (err, data) => {
         if (!err) {
             //render ra file: update.hbs (trong thư mục views/student)
             //gửi kèm dữ liệu của object student để load vào form edit
             //student (tên) , data (dữ liệu)
-            res.render("student/update", { student: data })
+            res.render("toy/update", { toy: data })
         }
     })
 })
@@ -90,50 +88,25 @@ router.get('/edit/:id', (req, res) => {
 //nhận & xử lý dữ liệu từ form EDIT
 router.post('/edit/:id', (req, res) => {
     var id = req.params.id;
-    var student = req.body;
-    StudentModel.findByIdAndUpdate(id, student, (err) => {
+    var toy = req.body;
+    ToyModel.findByIdAndUpdate(id, toy, (err) => {
         if (!err) {
             console.log("Update student succeed !")
-            res.redirect("/student")
+            res.redirect("/toy")
         }
     })
 })
 
 router.get('/detail/:id', (req, res) => {
-    StudentModel.findById(req.params.id, (err, student) => {
+    ToyModel.findById(req.params.id, (err, toy) => {
         if (!err) {
-            res.render('student/info', { student: student })
+            res.render('toy/info', { toy: toy })
         }
     })
 })
 
-//search function
-router.post('/search', (req, res) => {
-    StudentModel.find({ name: new RegExp(req.body.name, "i") }, (err, data) => {
-        if (!err) {
-            res.render('student/index', { student: data })
-        }
-    })
-})
-//sort function
-router.get('/sort/asc', (req, res) => {
-    StudentModel.find()
-        .sort({ name: 1 })
-        .exec((err, data) => {
-            if (!err) {
-                res.render('student/index', { student: data })
-            }
-        })
-})
 
-router.get('/sort/desc', (req, res) => {
-    StudentModel.find()
-        .sort({ name: -1 })
-        .exec((err, data) => {
-            if (!err) {
-                res.render('student/index', { student: data })
-            }
-        })
-})
+
+
 
 module.exports = router

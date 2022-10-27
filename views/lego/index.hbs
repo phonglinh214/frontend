@@ -1,0 +1,36 @@
+<table class="table table-bordered bg-light p-4 mt-3 mb-3 text-center">
+   <tr>
+      <th class="text-primary" colspan="5">Lego List</th>
+      <th>
+         <a class="btn btn-primary" href="/lego/add">ADD</a>
+
+      </th>
+   </tr>
+   <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Year</th>
+      <th>Image</th>
+      <th>Price</th>
+      <th>Menu</th>
+   </tr>
+
+   {{#each lego }}
+   <tr>
+      <td>{{name}}</td>
+      <td>{{type}}</td>
+      <td>{{year}}</td>
+      <td>
+         <a href="/lego/detail/{{_id}}">
+            <img src="{{image}}" width="100" height="100">
+         </a>
+      </td>
+      <td>{{price}}</td>
+      
+      <td>
+         <a class="btn btn-warning" href="/lego/edit/{{_id}}">EDIT</a>
+         <a class="btn btn-danger" href="/lego/delete/{{_id}}">DELETE</a>
+      </td>
+   </tr>
+   {{/each}}
+</table>

@@ -5,18 +5,19 @@ var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 
 var indexRouter = require('./routes/index')
-var studentRouter = require('./routes/student')
-var lecturerRouter = require('./routes/lecturer')
-var apiRouter = require('./routes/api')
+var toyRouter = require('./routes/toy')
+var legoRouter = require('./routes/lego')
+//var customerRouter = require('./routes/customer')
+
 
 //Lỗi cors là một chính sách của trình duyệt nhằm ngăn chặn việc truy cập tài nguyên của các domain khác khi không được phép
 var cors = require('cors')
 
 var mongoose = require('mongoose')
 var url =
-    "mongodb+srv://phonglinh214:nhatkop235@cluster0.0g3x0jm.mongodb.net/cloud"
+    "mongodb+srv://phonglinh214:nhatkop235@cluster0.0g3x0jm.mongodb.net/asm"
     
-    //'mongodb://localhost:27017/cloud'
+    //'mongodb://localhost:27017/asm'
 
 
 mongoose.connect(url, { useNewUrlParser: true }, err => {
@@ -48,9 +49,10 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
-app.use('/student', studentRouter)
-app.use('/lecturer', lecturerRouter)
-app.use('/api', apiRouter)
+app.use('/toy', toyRouter)
+app.use("/lego", legoRouter)
+//app.use('/customer', customerRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -70,7 +72,7 @@ app.use(function (err, req, res, next) {
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-    console.log('http://localhost:3000')
+    console.log('Server is running at: http://localhost:3000')
 })
 
 module.exports = app
