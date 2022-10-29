@@ -6,7 +6,7 @@ var ToySchema = new mongoose.Schema({
     type: String,
     year: String,
     image: String,
-    price: String,
+    price: Number,
     
 
 }, {
