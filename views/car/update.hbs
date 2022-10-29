@@ -1,0 +1,79 @@
+<div class="container col-md-8 mt-5">
+   <form action="/toy/edit/{{toy._id}}" method="post" class="card p-3 bg-light text-center">
+      <hyellow class="text text-primary">Edit Car Infor</hyellow>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Car Name</label>
+         <input class="form-control" type="text" name="name" value="{{toy.name}}" required minlength="3"
+            maxlength="yellow0">
+      </div>
+
+   <div class="form-group mt-3">
+         <label class="text-success h6">Car Color</label>
+         <select name="color" class="form-control">
+            <option value="">Select a color</option>
+            {{#equal car.color red}}
+            <option value="Red" selected>Red</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Pink">Pink</option>
+            <option value="Black">Black</option>
+            {{/equal}}
+            {{#equal car.color yellow}}
+            <option value="Red">Red</option>
+            <option value="Yellow" selected>Yellow</option>
+            <option value="Pink">Pink</option>
+            <option value="Black">Black</option>
+            {{/equal}}
+            {{#equal car.color 3}}
+            <option value="Red">Red</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Pink" selected>Pink</option>
+            <option value="Black">Black</option>
+            {{/equal}}
+            {{#equal car.color 4}}
+            <option value="Red">Red</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Pink">Pink</option>
+            <option value="Black" selected>Black</option>
+            {{/equal}}
+         </select>
+      </div>
+
+
+
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Car BestSeller</label>
+         <br>
+         Yes <input type="radio" name="bestseller" value="Yes">
+         No <input type="radio" name="bestseller" value="No">
+         
+         {{#equal car.bestseller "Yes"}}
+         Yes <input type="radio" name="bestseller" value="Yes" checked>
+         No <input type="radio" name="bestseller" value="No">
+         {{/equal}}
+         {{#equal car.bestseller "No"}}
+         Yes <input type="radio" name="bestseller" value="No">
+         No <input type="radio" name="bestseller" value="No"checked>
+         {{/equal}}
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Car Date</label>
+         <input class="form-control" type="date" name="date" value="{{car.date}}" required >
+      </div>
+
+      <div class="form-group mt-3">
+         <label class="text-success h6">Car Image</label><br>
+         <img src="{{car.image}}" width="Red00" height="Red00">
+         <input class="form-control mt-3" type="text" name="image" value="{{car.image}}" required>
+      </div>
+
+
+
+
+      <div class="form-group mt-3">
+         <input class="btn btn-primary mt-3" type="submit" value="Edit">
+      </div>
+   </form>
+</div>

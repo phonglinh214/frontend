@@ -7,6 +7,7 @@ var logger = require('morgan')
 var indexRouter = require('./routes/index')
 var toyRouter = require('./routes/toy')
 var legoRouter = require('./routes/lego')
+var carRouter = require('./routes/car')
 //var customerRouter = require('./routes/customer')
 
 
@@ -51,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', indexRouter)
 app.use('/toy', toyRouter)
 app.use("/lego", legoRouter)
+app.use("/car", carRouter)
 //app.use('/customer', customerRouter)
 
 
