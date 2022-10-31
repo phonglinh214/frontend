@@ -33,7 +33,7 @@
       
       <td>
          <a class="btn btn-warning" href="/toy/edit/{{_id}}">EDIT</a>
-         <a class="btn btn-danger" href="/toy/delete/{{_id}}">DELETE</a>
+         <a class="btn btn-danger" href="/toy/delete/{{_id}}" onclick="return confirm('Are you sure to delete this toy ?');">DELETE</a>
       </td>
    </tr>
    {{/each}}
